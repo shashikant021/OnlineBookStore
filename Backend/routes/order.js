@@ -22,7 +22,7 @@ router.post("/place-order", authenticateToken, async (req, res) => {
         $pull: { cart: orderData._id },
       });
     }
-    return res.status(200).json({
+    return res.json({
       status: "success",
       message: "Order placed successfully",
     });
@@ -43,7 +43,7 @@ router.get("/get-order-history", authenticateToken, async (req, res) => {
     const ordersData = userData.orders.reverse();
     return res.status(200).json({
       status: "success",
-      message: ordersData,
+      data: ordersData,
     });
   } catch (error) {
     console.log(error);

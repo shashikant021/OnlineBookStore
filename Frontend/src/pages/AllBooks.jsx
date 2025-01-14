@@ -23,7 +23,7 @@ const AllBooks = () => {
       </h3>
       {/* </div> */}
       {!Data && (
-        <div className="flex items-center justify-center my-8">
+        <div className="w-full h-screen flex items-center justify-center">
           <Loader />
         </div>
       )}

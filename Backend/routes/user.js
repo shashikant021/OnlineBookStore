@@ -110,13 +110,42 @@ router.get("/get-user-information", authenticateToken, async (req, res) => {
 });
 
 //update address
+// router.put("/update-address", authenticateToken, async (req, res) => {
+//   try {
+//     const { id } = req.headers;
+//     const { address } = req.body;
+//     await User.findByIdAndUpdate(id, { address: address });
+//     return res.status(200).json({ message: "Address Updated Successfully" });
+//   } catch (error) {
+//     res.status(500).json({ message: "Internal server error" });
+//   }
+// });
+
+//update address
 router.put("/update-address", authenticateToken, async (req, res) => {
   try {
     const { id } = req.headers;
     const { address } = req.body;
+
+    // Fetch the current user to compare the address
+    const user = await User.findById(id);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Check if the new address is the same as the current address
+    if (user.address === address) {
+      return res
+        .status(200)
+        .json({ message: "No changes made. Address remains the same." });
+    }
+
+    // Update the address
     await User.findByIdAndUpdate(id, { address: address });
-    return res.status(200).json({ message: "Address Updated Successfully" });
+    return res.status(200).json({ message: "Address updated successfully" });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: "Internal server error" });
   }
 });
