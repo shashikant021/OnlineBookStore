@@ -45,6 +45,7 @@ const SignUp = () => {
     <div className="h-auto bg-zinc-900 px-12 py-8 flex items-center justify-center">
       <div className="bg-zinc-800 rounded-lg px-8 py-5 w-full md:w-3/6 lg:w-2/6">
         <p className="text-zinc-100 text-xl text-center font-bold">Sign Up</p>
+        {/* <div className="w-full mt-4 h-[1px] bg-zinc-500 hidden lg:block"></div> */}
         <div className="mt-4">
           <div className="mt-4">
             <label className="text-zinc-300">Username</label>
