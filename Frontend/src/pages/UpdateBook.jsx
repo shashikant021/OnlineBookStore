@@ -5,6 +5,9 @@ import { toast } from "react-toastify";
 import { IoArrowBackCircleSharp } from "react-icons/io5";
 
 function UpdateBook() {
+  // const host = 'http://localhost:1000';
+  const host = "https://onlinebookstore-ba29.onrender.com";
+
   const { id } = useParams();
   const navigate = useNavigate();
   const [Data, setData] = useState({
@@ -40,7 +43,7 @@ function UpdateBook() {
         toast.error("All fields are required");
       } else {
         const response = await axios.put(
-          `${import.meta.env.VITE_API__URL}/api/book/update-book`,
+          `${host}/api/book/update-book`,
           Data,
           { headers }
         );
@@ -63,7 +66,7 @@ function UpdateBook() {
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
-        `${import.meta.env.VITE_API__URL}/api/book/get-book-by-id/${id}`
+        `${host}/api/book/get-book-by-id/${id}`
       );
       //   console.log(response)
       setData(response.data.data);

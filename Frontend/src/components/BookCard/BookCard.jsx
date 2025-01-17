@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const BookCard = ({ data, favourite }) => {
+  // const host = 'http://localhost:1000';
+  const host = "https://onlinebookstore-ba29.onrender.com";
+
   const headers = {
     id: localStorage.getItem("id"),
     authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -12,12 +15,12 @@ const BookCard = ({ data, favourite }) => {
 
   const handleRemoveFromFavourite = async () => {
     const response = await axios.put(
-      `${import.meta.env.VITE_API__URL}/api/favourite/remove-book-from-favourite`,
+      `${host}/api/favourite/remove-book-from-favourite`,
       {},
       { headers }
     );
     // console.log(response);
-    toast.success(response.data.message)
+    toast.success(response.data.message);
   };
 
   // console.log(data);

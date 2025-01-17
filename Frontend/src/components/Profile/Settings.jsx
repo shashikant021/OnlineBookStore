@@ -4,6 +4,9 @@ import Loader from "../Loader/Loader";
 import { toast } from "react-toastify";
 
 const Settings = () => {
+  // const host = 'http://localhost:1000';
+  const host = "https://onlinebookstore-ba29.onrender.com";
+
   const [ProfileData, setProfileData] = useState();
   const [Value, setValue] = useState({ address: "" });
 
@@ -20,7 +23,7 @@ const Settings = () => {
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
-        `${import.meta.env.VITE_API__URL}/api/auth/get-user-information`,
+        `${host}/api/auth/get-user-information`,
         { headers }
       );
       setProfileData(response.data);
@@ -30,12 +33,10 @@ const Settings = () => {
   }, []);
 
   const submitAddress = async () => {
-    const response = await axios.put(
-      `${import.meta.env.VITE_API__URL}/api/auth/update-address`,
-      Value,
-      { headers }
-    );
-    toast.success(response.data.message)
+    const response = await axios.put(`${host}/api/auth/update-address`, Value, {
+      headers,
+    });
+    toast.success(response.data.message);
   };
 
   return (

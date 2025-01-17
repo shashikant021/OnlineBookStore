@@ -4,11 +4,14 @@ import BookCard from "../BookCard/BookCard";
 import Loader from "../Loader/Loader";
 
 const RecentlyAdded = () => {
+  // const host = 'http://localhost:1000';
+  const host = "https://onlinebookstore-ba29.onrender.com";
+
   const [Data, setData] = useState();
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
-        `${import.meta.env.VITE_API__URL}/api/book/get-recent-books`
+        `${host}/api/book/get-recent-books`
       );
       // console.log(response.data.data);
       setData(response.data.data);

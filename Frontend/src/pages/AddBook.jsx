@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 
 const AddBook = () => {
+  // const host = 'http://localhost:1000';
+  const host = "https://onlinebookstore-ba29.onrender.com";
+
   const [Data, setData] = useState({
     url: "",
     title: "",
@@ -34,11 +37,9 @@ const AddBook = () => {
       ) {
         toast.error("All fields are required");
       } else {
-        const response = await axios.post(
-          `${import.meta.env.VITE_API__URL}/api/book/add-book`,
-          Data,
-          { headers }
-        );
+        const response = await axios.post(`${host}/api/book/add-book`, Data, {
+          headers,
+        });
         setData({
           url: "",
           title: "",

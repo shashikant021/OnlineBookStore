@@ -6,6 +6,9 @@ import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 
 const LogIn = () => {
+  // const host = 'http://localhost:1000';
+  const host = "https://onlinebookstore-ba29.onrender.com";
+
   const [Values, setValues] = useState({
     email: "",
     password: "",
@@ -25,7 +28,7 @@ const LogIn = () => {
         toast.error("All fields are required");
       } else {
         const response = await axios.post(
-          `${import.meta.env.VITE_API__URL}/api/auth/sign-in`,
+          `${host}/api/auth/sign-in`,
           Values
         );
         // console.log(response.data.id)

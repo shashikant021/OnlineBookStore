@@ -10,6 +10,9 @@ import SeeUserData from "./SeeUserData";
 import { ImFileEmpty } from "react-icons/im";
 
 const AllOrders = () => {
+  // const host = 'http://localhost:1000';
+  const host = "https://onlinebookstore-ba29.onrender.com";
+
   const [AllOrders, setAllOrders] = useState();
   const [Options, setOptions] = useState(-1);
   const [Values, setValues] = useState({ status: "" });
@@ -23,10 +26,9 @@ const AllOrders = () => {
   // Fetch all orders from the server
   useEffect(() => {
     const fetch = async () => {
-      const response = await axios.get(
-        `${import.meta.env.VITE_API__URL}/api/order/get-all-orders`,
-        { headers }
-      );
+      const response = await axios.get(`${host}/api/order/get-all-orders`, {
+        headers,
+      });
       // console.log(response.data.data);
       setAllOrders(response.data.data);
     };
@@ -41,7 +43,7 @@ const AllOrders = () => {
   const submitChanges = async (i) => {
     const id = AllOrders[i]._id;
     const response = await axios.put(
-      `${import.meta.env.VITE_API__URL}/api/order/update-status/${id}`,
+      `${host}/api/order/update-status/${id}`,
       Values,
       { headers }
     );
@@ -69,7 +71,11 @@ const AllOrders = () => {
       )}
 
       {AllOrders && AllOrders.length > 0 && (
-        <div className={`h-auto p-0 md:p-4 text-zinc-100 ${AllOrders && AllOrders.length <=6 ? 'h-[70vh]' : 'h-auto'}`}>
+        <div
+          className={`h-auto p-0 md:p-4 text-zinc-100 ${
+            AllOrders && AllOrders.length <= 6 ? "h-[70vh]" : "h-auto"
+          }`}
+        >
           <h1 className="text-2xl md:text-4xl text-center font-semibold text-zinc-500 mb-8">
             All Orders
           </h1>

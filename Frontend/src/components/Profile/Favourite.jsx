@@ -5,6 +5,8 @@ import BookCard from "../BookCard/BookCard";
 import { ImFileEmpty } from "react-icons/im";
 
 const Favourite = () => {
+  // const host = 'http://localhost:1000';
+  const host = "https://onlinebookstore-ba29.onrender.com";
   const [FavouriteBooks, setFavouriteBooks] = useState();
 
   const headers = {
@@ -15,7 +17,7 @@ const Favourite = () => {
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
-        `${import.meta.env.VITE_API__URL}/api/favourite/get-favourite-books`,
+        `${host}/api/favourite/get-favourite-books`,
         { headers }
       );
       // console.log(response.data.data)

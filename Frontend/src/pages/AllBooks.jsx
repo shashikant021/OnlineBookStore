@@ -5,12 +5,13 @@ import BookCard from "../components/BookCard/BookCard";
 import { ImFileEmpty } from "react-icons/im";
 
 const AllBooks = () => {
+  // const host = 'http://localhost:1000';
+  const host = "https://onlinebookstore-ba29.onrender.com";
+
   const [Data, setData] = useState();
   useEffect(() => {
     const fetch = async () => {
-      const response = await axios.get(
-        `${import.meta.env.VITE_API__URL}/api/book/get-all-books`
-      );
+      const response = await axios.get(`${host}/api/book/get-all-books`);
       // console.log(response.data.data);
       setData(response.data.data);
     };

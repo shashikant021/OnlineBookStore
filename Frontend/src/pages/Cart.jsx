@@ -7,6 +7,9 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 function Cart() {
+  // const host = 'http://localhost:1000';
+  const host = "https://onlinebookstore-ba29.onrender.com";
+
   const [Cart, setCart] = useState();
   const [Total, setTotal] = useState();
   const navigate = useNavigate();
@@ -18,10 +21,9 @@ function Cart() {
 
   useEffect(() => {
     const fetch = async () => {
-      const response = await axios.get(
-        `${import.meta.env.VITE_API__URL}/api/cart/get-user-cart`,
-        { headers }
-      );
+      const response = await axios.get(`${host}/api/cart/get-user-cart`, {
+        headers,
+      });
       // console.log(res.data.data);
       setCart(response.data.data);
       toast.success(response.data.message);
@@ -31,7 +33,7 @@ function Cart() {
 
   const deleteItems = async (bookid) => {
     const response = await axios.put(
-      `${import.meta.env.VITE_API__URL}/api/cart/remove-from-cart/${bookid}`,
+      `${host}/api/cart/remove-from-cart/${bookid}`,
       {},
       { headers }
     );
@@ -62,7 +64,7 @@ function Cart() {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API__URL}/api/order/place-order`,
+        `${host}/api/order/place-order`,
         { order: Cart },
         { headers }
       );

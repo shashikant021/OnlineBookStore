@@ -6,6 +6,9 @@ import axios from "axios";
 import Loader from "../components/Loader/Loader";
 
 const Profile = () => {
+  // const host = 'http://localhost:1000';
+  const host = "https://onlinebookstore-ba29.onrender.com";
+
   // const isLoggedIn = useSelector();
   const [Profile, setProfile] = useState();
   const headers = {
@@ -16,7 +19,7 @@ const Profile = () => {
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
-        `${import.meta.env.VITE_API__URL}/api/auth/get-user-information`,
+        `${host}/api/auth/get-user-information`,
         { headers }
       );
       // console.log(response.data);

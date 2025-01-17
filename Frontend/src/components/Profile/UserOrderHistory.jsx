@@ -5,6 +5,9 @@ import { ImFileEmpty } from "react-icons/im";
 import { Link } from "react-router-dom";
 
 const UserOrderHistory = () => {
+  // const host = 'http://localhost:1000';
+  const host = "https://onlinebookstore-ba29.onrender.com";
+
   const [OrderHistory, setOrderHistory] = useState();
 
   const headers = {
@@ -14,10 +17,9 @@ const UserOrderHistory = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      const response = await axios.get(
-        `${import.meta.env.VITE_API__URL}/api/order/get-order-history`,
-        { headers }
-      );
+      const response = await axios.get(`${host}/api/order/get-order-history`, {
+        headers,
+      });
       // console.log(response.data.data);
       setOrderHistory(response.data.data);
     };
@@ -42,7 +44,11 @@ const UserOrderHistory = () => {
         </div>
       )}
       {OrderHistory && OrderHistory.length > 0 && (
-        <div className={`p-0 md:p-2 text-zinc-100 ${OrderHistory && OrderHistory.length <=4 ? 'h-[70vh]' : 'h-auto'}`}>
+        <div
+          className={`p-0 md:p-2 text-zinc-100 ${
+            OrderHistory && OrderHistory.length <= 4 ? "h-[70vh]" : "h-auto"
+          }`}
+        >
           <h1 className="text-3xl text-center md:text-5xl font-semibold text-zinc-500 mb-8">
             Your Order History
           </h1>

@@ -12,6 +12,9 @@ import { toast } from "react-toastify";
 import { IoArrowBackCircleSharp } from "react-icons/io5";
 
 const ViewBookDetails = () => {
+  // const host = 'http://localhost:1000';
+  const host = "https://onlinebookstore-ba29.onrender.com";
+
   const navigate = useNavigate();
   const { id } = useParams();
   const [Data, setData] = useState();
@@ -26,7 +29,7 @@ const ViewBookDetails = () => {
 
   const handleFavourite = async () => {
     const response = await axios.put(
-      `${import.meta.env.VITE_API__URL}/api/favourite/add-book-to-favourite`,
+      `${host}/api/favourite/add-book-to-favourite`,
       {},
       { headers }
     );
@@ -36,7 +39,7 @@ const ViewBookDetails = () => {
 
   const handleCart = async () => {
     const response = await axios.put(
-      `${import.meta.env.VITE_API__URL}/api/cart/add-to-cart`,
+      `${host}/api/cart/add-to-cart`,
       {},
       { headers }
     );
@@ -46,9 +49,7 @@ const ViewBookDetails = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      const response = await axios.get(
-        `${import.meta.env.VITE_API__URL}/api/book/get-book-by-id/${id}`
-      );
+      const response = await axios.get(`${host}/api/book/get-book-by-id/${id}`);
       //   console.log(response)
       setData(response.data.data);
     };
@@ -56,10 +57,9 @@ const ViewBookDetails = () => {
   }, []);
 
   const deleteBook = async () => {
-    const response = await axios.delete(
-      `${import.meta.env.VITE_API__URL}/api/book/delete-book`,
-      { headers }
-    );
+    const response = await axios.delete(`${host}/api/book/delete-book`, {
+      headers,
+    });
     toast.success(response.data.message);
     navigate("/all-books");
   };
@@ -89,9 +89,11 @@ const ViewBookDetails = () => {
                 >
                   <FaShoppingCart />
                 </button>
-                <button onClick={() => navigate("/all-books")}
-                className="bg-white text-blue-500 text-4xl  rounded-2xl p-1 mt-16 hover:bg-blue-500 hover:text-white hover:scale-105 duration-200">
-                   <IoArrowBackCircleSharp />
+                <button
+                  onClick={() => navigate("/all-books")}
+                  className="bg-white text-blue-500 text-4xl  rounded-2xl p-1 mt-16 hover:bg-blue-500 hover:text-white hover:scale-105 duration-200"
+                >
+                  <IoArrowBackCircleSharp />
                 </button>
               </div>
             )}
@@ -109,9 +111,11 @@ const ViewBookDetails = () => {
                 >
                   <MdDeleteForever />
                 </button>
-                <button onClick={() => navigate("/all-books")}
-                className="bg-white text-blue-500 text-4xl  rounded-2xl p-1 mt-16 hover:bg-blue-500 hover:text-white hover:scale-105 duration-200">
-                   <IoArrowBackCircleSharp />
+                <button
+                  onClick={() => navigate("/all-books")}
+                  className="bg-white text-blue-500 text-4xl  rounded-2xl p-1 mt-16 hover:bg-blue-500 hover:text-white hover:scale-105 duration-200"
+                >
+                  <IoArrowBackCircleSharp />
                 </button>
               </div>
             )}

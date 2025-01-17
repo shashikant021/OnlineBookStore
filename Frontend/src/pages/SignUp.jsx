@@ -4,6 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const SignUp = () => {
+  // const host = 'http://localhost:1000';
+  const host = "https://onlinebookstore-ba29.onrender.com";
+
   const navigate = useNavigate();
   const [Values, setValues] = useState({
     username: "",
@@ -28,12 +31,12 @@ const SignUp = () => {
         toast.error("All fields are required");
       } else {
         const response = await axios.post(
-          `${import.meta.env.VITE_API__URL}/api/auth/sign-up`,
+          `${host}/api/auth/sign-up`,
           Values
         );
         // console.log(response.data);
         toast.success(response.data.message);
-        navigate('/login')
+        navigate("/login");
       }
     } catch (error) {
       // console.log(error.response);
