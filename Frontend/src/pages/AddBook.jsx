@@ -35,7 +35,7 @@ const AddBook = () => {
         toast.error("All fields are required");
       } else {
         const response = await axios.post(
-          "http://localhost:1000/api/book/add-book",
+          `${import.meta.env.VITE_API__URL}/api/book/add-book`,
           Data,
           { headers }
         );

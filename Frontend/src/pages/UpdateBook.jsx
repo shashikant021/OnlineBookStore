@@ -40,7 +40,7 @@ function UpdateBook() {
         toast.error("All fields are required");
       } else {
         const response = await axios.put(
-          "http://localhost:1000/api/book/update-book",
+          `${import.meta.env.VITE_API__URL}/api/book/update-book`,
           Data,
           { headers }
         );
@@ -63,7 +63,7 @@ function UpdateBook() {
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
-        `http://localhost:1000/api/book/get-book-by-id/${id}`
+        `${import.meta.env.VITE_API__URL}/api/book/get-book-by-id/${id}`
       );
       //   console.log(response)
       setData(response.data.data);

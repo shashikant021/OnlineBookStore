@@ -28,7 +28,7 @@ const SignUp = () => {
         toast.error("All fields are required");
       } else {
         const response = await axios.post(
-          "http://localhost:1000/api/auth/sign-up",
+          `${import.meta.env.VITE_API__URL}/api/auth/sign-up`,
           Values
         );
         // console.log(response.data);
