@@ -64,7 +64,7 @@ router.get("/get-all-orders", authenticateToken, async (req, res) => {
       .sort({ createdAt: -1 });
     return res.status(200).json({
       status: "success",
-      message: userData,
+      data: userData,
     });
   } catch (error) {
     console.log(error);
@@ -76,7 +76,7 @@ router.get("/get-all-orders", authenticateToken, async (req, res) => {
 router.put("/update-status/:id", authenticateToken, async (req, res) => {
   try {
     const { id } = req.params;
-    await Order.findByIdAndUpdate(id, { status: req.boby.status });
+    await Order.findByIdAndUpdate(id, { status: req.body.status });
     return res.status(200).json({
       status: "success",
       message: "status updated Successfully",

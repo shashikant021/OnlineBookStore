@@ -26,18 +26,18 @@ const Profile = () => {
   }, []); //[] this symbol means dependency array which is empty now.
 
   return (
-    <div className="bg-zinc-900 px-2 md:px-12 text-white flex flex-col md:flex-row md:h-auto py-8 gap-4">
+    <div className="bg-zinc-900 px-2 md:px-12 text-white flex flex-col md:flex-row h-auto py-8 gap-4">
       {!Profile && (
-        <div className="w-full h-[100%] flex items-center justify-center">
+        <div className="w-full h-screen flex items-center justify-center">
           <Loader />
         </div>
       )}
       {Profile && (
         <>
-          <div className=" w-full md:w-3/6 lg:w-2/6 md:h-[85vh] ">
+          <div className=" w-full md:w-2/6 lg:w-2/6 md:h-[85vh] ">
             <Sidebar data={Profile} />
           </div>
-          <div className="md:w-3/6 lg:w-4/6">
+          <div className="md:w-4/6 lg:w-4/6 h-auto">
             {" "}
             <Outlet />{" "}
           </div>

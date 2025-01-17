@@ -28,7 +28,7 @@ const Favourite = () => {
   return (
     <>
       {FavouriteBooks && FavouriteBooks.length === 0 ? (
-        <div className="text-zinc-500 text-3xl md:text-5xl flex flex-col items-center justify-center h-[40vh] md:h-[100%]">
+        <div className="text-zinc-500 text-3xl md:text-5xl flex flex-col items-center justify-center h-[50vh] md:h-[100%]">
           No Favourite Books
           <ImFileEmpty className="mt-8 size-20 text-blue-500" />
         </div>
@@ -37,7 +37,7 @@ const Favourite = () => {
           Your Favourites
         </h1>
       )}
-      <div className=" mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-8">
+      <div className=" mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-8">
         {FavouriteBooks &&
           FavouriteBooks.map((items, i) => (
             <div key={i}>

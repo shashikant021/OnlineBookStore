@@ -29,10 +29,32 @@ router.post("/add-book", authenticateToken, async (req, res) => {
   }
 });
 
-//update book
+//update book --admin
 router.put("/update-book", authenticateToken, async (req, res) => {
   try {
     const { bookid } = req.headers;
+
+    //Fetch the current book details from the database.
+    const existingBook = await Book.findById(bookid);
+    if (!existingBook) {
+      return res.status(404).json({ message: "Book not found" });
+    }
+
+    // Check if any of the details have changed.
+    const isUnchanged =
+      existingBook.url === req.body.url &&
+      existingBook.title === req.body.title &&
+      existingBook.author === req.body.author &&
+      existingBook.price === req.body.price &&
+      existingBook.desc === req.body.desc &&
+      existingBook.language === req.body.language;
+
+    //If no details are changed, return an appropriate response.
+    if (isUnchanged) {
+      return res.status(400).json({ message: "No changes detected!" });
+    }
+
+    //Update the book details if changes are detected.
     await Book.findByIdAndUpdate(bookid, {
       url: req.body.url,
       title: req.body.title,
