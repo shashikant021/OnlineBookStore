@@ -65,9 +65,13 @@ function Cart() {
   };
 
   return (
-    <div className="bg-zinc-900 px-12 py-8 h-screen">
+    <div
+      className={`bg-zinc-900 px-12 py-8 ${
+        Cart && Cart.length <= 3 ? "h-screen" : "h-auto"
+      } `}
+    >
       {!Cart && (
-        <div className="w-full h-[100%] flex items-center justify-center">
+        <div className="w-full h-screen flex items-center justify-center">
           <Loader />
         </div>
       )}
@@ -83,46 +87,48 @@ function Cart() {
       )}
       {Cart && Cart.length > 0 && (
         <>
-          <h1 className="text-5xl text-center font-semibold text-zinc-300 mb-8">
-            Your Cart
-          </h1>
-          {Cart.map((items, i) => (
-            <div
-              key={i}
-              className="w-full my-4 rounded flex flex-col md:flex-row p-4 bg-zinc-800 items-center justify-center"
-            >
-              <img
-                src={items.url}
-                alt="/"
-                className="h-[20vh] md:h-[10vh] object-cover mr-2"
-              />
-              <div className="w-full md:w-auto">
-                <h1 className="text-2xl text-zinc-100 fnt-semibold text-start mt-2 md:mt-0">
-                  {items.title}
-                </h1>
-                <p className="text-zinc-300 mt-2 hidden lg:block">
-                  {items.desc.slice(0, 100)}...
-                </p>
-                <p className="text-zinc-300 mt-2 hidden md:block lg:hidden">
-                  {items.desc.slice(0, 65)}...
-                </p>
-                <p className="text-zinc-300 mt-2 md:hidden block">
-                  {items.desc.slice(0, 100)}...
-                </p>
+          <div className="">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl text-center font-semibold text-zinc-300 mb-8">
+              Your Cart
+            </h1>
+            {Cart.map((items, i) => (
+              <div
+                key={i}
+                className="w-full my-4 rounded flex flex-col md:flex-row p-4 bg-zinc-800 items-center justify-center"
+              >
+                <img
+                  src={items.url}
+                  alt="/"
+                  className="h-[20vh] md:h-[10vh] object-cover mr-2"
+                />
+                <div className="w-full md:w-auto">
+                  <h1 className="text-2xl text-zinc-100 fnt-semibold text-start mt-2 md:mt-0">
+                    {items.title}
+                  </h1>
+                  <p className="text-zinc-300 mt-2 hidden lg:block">
+                    {items.desc.slice(0, 100)}...
+                  </p>
+                  <p className="text-zinc-300 mt-2 hidden md:block lg:hidden">
+                    {items.desc.slice(0, 65)}...
+                  </p>
+                  <p className="text-zinc-300 mt-2 md:hidden block">
+                    {items.desc.slice(0, 100)}...
+                  </p>
+                </div>
+                <div className="flex mt-4 w-full md:w-auto items-center justify-between">
+                  <h2 className="text-zinc-200 text-3xl font-semibold flex">
+                    ₹ {items.price}
+                  </h2>
+                  <button
+                    onClick={() => deleteItems(items._id)}
+                    className="bg-red-100 text-red-700 border border-red-700 rounded p-2 ms-12 hover:scale-105 duration-200"
+                  >
+                    <AiFillDelete />
+                  </button>
+                </div>
               </div>
-              <div className="flex mt-4 w-full md:w-auto items-center justify-between">
-                <h2 className="text-zinc-200 text-3xl font-semibold flex">
-                  ₹ {items.price}
-                </h2>
-                <button
-                  onClick={() => deleteItems(items._id)}
-                  className="bg-red-100 text-red-700 border border-red-700 rounded p-2 ms-12 hover:scale-105 duration-200"
-                >
-                  <AiFillDelete />
-                </button>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </>
       )}
       {Cart && Cart.length > 0 && (

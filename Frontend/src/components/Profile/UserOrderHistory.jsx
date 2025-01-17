@@ -5,7 +5,7 @@ import { ImFileEmpty } from "react-icons/im";
 import { Link } from "react-router-dom";
 
 const UserOrderHistory = () => {
-  const [OrderHistory, serOrderHistory] = useState();
+  const [OrderHistory, setOrderHistory] = useState();
 
   const headers = {
     id: localStorage.getItem("id"),
@@ -19,7 +19,7 @@ const UserOrderHistory = () => {
         { headers }
       );
       // console.log(response.data.data);
-      serOrderHistory(response.data.data);
+      setOrderHistory(response.data.data);
     };
     fetch();
   }, []);
@@ -34,7 +34,7 @@ const UserOrderHistory = () => {
       {OrderHistory && OrderHistory.length === 0 && (
         <div className="h-[80vh] p-4 text-zinc-100">
           <div className="h-[100%] flex flex-col items-center justify-center">
-            <h1 className="text-5xl font-semibold text-zinc-500 mb-8">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-zinc-500 mb-8">
               No Order History
             </h1>
             <ImFileEmpty className="mt-8 size-20 text-blue-500" />

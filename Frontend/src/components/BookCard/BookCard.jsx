@@ -33,7 +33,7 @@ const BookCard = ({ data, favourite }) => {
           </h2>
           <div className="flex justify-between">
             {" "}
-            <p className="mt-2 text-zinc-400 font-semibold ">
+            <p className="mt-2 text-zinc-400 font-semibold text">
               By: {data.author}
             </p>
             <p className="mt-2 text-zinc-200 font-semibold ">${data.price}</p>

@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Loader from "../Loader/Loader";
 import { GrLanguage } from "react-icons/gr";
 import { FaHeart } from "react-icons/fa";
@@ -9,8 +9,10 @@ import { FaEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { IoArrowBackCircleSharp } from "react-icons/io5";
 
 const ViewBookDetails = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [Data, setData] = useState();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -53,6 +55,15 @@ const ViewBookDetails = () => {
     fetch();
   }, []);
 
+  const deleteBook = async () => {
+    const response = await axios.delete(
+      "http://localhost:1000/api/book/delete-book",
+      { headers }
+    );
+    toast.success(response.data.message);
+    navigate("/all-books");
+  };
+
   //   console.log(id);
   return (
     <>
@@ -78,15 +89,29 @@ const ViewBookDetails = () => {
                 >
                   <FaShoppingCart />
                 </button>
+                <button onClick={() => navigate("/all-books")}
+                className="bg-white text-blue-500 text-4xl  rounded-2xl p-1 mt-16 hover:bg-blue-500 hover:text-white hover:scale-105 duration-200">
+                   <IoArrowBackCircleSharp />
+                </button>
               </div>
             )}
             {isLoggedIn === true && role === "admin" && (
               <div className="flex flex-col pl-8 md:pl-0">
-                <button className="bg-blue-500 rounded-2xl text-3xl p-2 mb-8 text-white hover:bg-blue-900  hover:scale-105 duration-200">
+                <Link
+                  to={`/updateBook/${id}`}
+                  className="bg-blue-500 rounded-2xl text-3xl p-2 mb-8 text-white hover:bg-blue-900  hover:scale-105 duration-200"
+                >
                   <FaEdit />
-                </button>
-                <button className="bg-red-500 rounded-2xl text-3xl p-2 mt-8 text-white hover:bg-red-900 hover:scale-105 duration-200">
+                </Link>
+                <button
+                  onClick={deleteBook}
+                  className="bg-red-500 rounded-2xl text-3xl p-2 mt-8 text-white hover:bg-red-900 hover:scale-105 duration-200"
+                >
                   <MdDeleteForever />
+                </button>
+                <button onClick={() => navigate("/all-books")}
+                className="bg-white text-blue-500 text-4xl  rounded-2xl p-1 mt-16 hover:bg-blue-500 hover:text-white hover:scale-105 duration-200">
+                   <IoArrowBackCircleSharp />
                 </button>
               </div>
             )}

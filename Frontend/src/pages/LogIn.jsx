@@ -45,7 +45,7 @@ const LogIn = () => {
   };
 
   return (
-    <div className="h-[85vh] bg-zinc-900 px-12 py-8 flex items-center justify-center">
+    <div className="h-screen bg-zinc-900 px-12 py-8 flex items-center justify-center">
       <div className="bg-zinc-800 rounded-lg px-8 py-5 w-full md:w-3/6 lg:w-2/6">
         <p className="text-zinc-100 text-xl text-center font-bold">Login</p>
         <div className="mt-4">
