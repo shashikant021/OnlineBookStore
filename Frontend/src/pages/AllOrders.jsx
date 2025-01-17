@@ -48,28 +48,28 @@ const AllOrders = () => {
     toast.success(response.data.message);
   };
 
-  AllOrders && AllOrders.splice(AllOrders.length - 1, 1);
+  // AllOrders && AllOrders.splice(AllOrders.length - 1, 1);
 
   return (
     <>
       {!AllOrders && (
-        <div className="h-[44vh] md:h-[100%] flex items-center justify-center">
+        <div className="h-[50vh] md:h-[100%] flex items-center justify-center">
           <Loader />
         </div>
       )}
-            {AllOrders && AllOrders.length === 0 && (
-              <div className="h-[80vh] p-4 text-zinc-100">
-                <div className="h-[100%] flex flex-col items-center justify-center">
-                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-zinc-500 mb-8">
-                    No Order History
-                  </h1>
-                  <ImFileEmpty className="mt-8 size-20 text-blue-500" />
-                </div>
-              </div>
-            )}
+      {AllOrders && AllOrders.length === 0 && (
+        <div className="h-[80vh] p-4 text-zinc-100">
+          <div className="h-[100%] flex flex-col items-center justify-center">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-zinc-500 mb-8">
+              No Order History
+            </h1>
+            <ImFileEmpty className="mt-8 size-20 text-blue-500" />
+          </div>
+        </div>
+      )}
 
       {AllOrders && AllOrders.length > 0 && (
-        <div className="h-[100%] p-0 md:p-4 text-zinc-100">
+        <div className={`h-auto p-0 md:p-4 text-zinc-100 ${AllOrders && AllOrders.length <=6 ? 'h-[70vh]' : 'h-auto'}`}>
           <h1 className="text-2xl md:text-4xl text-center font-semibold text-zinc-500 mb-8">
             All Orders
           </h1>
@@ -97,7 +97,7 @@ const AllOrders = () => {
           </div>
           {AllOrders.map((items, i) =>
             items?.book ? (
-              <div className="bg-zinc-800 w-full rounded py-2 px-4 flex gap-4 hover:bg-zinc-900 hover:cursor-pointer transition-all duration-300">
+              <div className="bg-zinc-800 w-full rounded py-2 px-4 my-4 flex gap-4 hover:bg-zinc-900 hover:cursor-pointer transition-all duration-300">
                 <div className="w-[3%]">
                   <h1 className="text-center">{i + 1}</h1>
                 </div>
@@ -121,7 +121,7 @@ const AllOrders = () => {
                       onClick={() => setOptions(i)}
                       className="hover:scale-105 transition-all duration-300"
                     >
-                      {items.status === "Order placed" ? (
+                      {items.status === "Out for delivery" ? (
                         <div className="text-yellow-500">{items.status}</div>
                       ) : items.status === "Cancelled" ? (
                         <div className="text-red-500"> {items.status} </div>
