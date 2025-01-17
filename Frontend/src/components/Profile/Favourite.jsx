@@ -37,7 +37,11 @@ const Favourite = () => {
           Your Favourites
         </h1>
       )}
-      <div className=" mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-8">
+      <div
+        className={`mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-8 ${
+          FavouriteBooks && FavouriteBooks.length <= 2 ? "h-screen" : "h-auto"
+        }`}
+      >
         {FavouriteBooks &&
           FavouriteBooks.map((items, i) => (
             <div key={i}>

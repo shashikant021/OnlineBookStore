@@ -27,7 +27,7 @@ const UserOrderHistory = () => {
   return (
     <>
       {!OrderHistory && (
-        <div className="flex items-center justify-center h-[100%]">
+        <div className="flex items-center justify-center h-[60vh]">
           <Loader />
         </div>
       )}
@@ -42,15 +42,15 @@ const UserOrderHistory = () => {
         </div>
       )}
       {OrderHistory && OrderHistory.length > 0 && (
-        <div className="h-[100%] p-0 md:p-4 text-zinc-100">
-          <h1 className="text-3xl md:text-5xl font-semibold text-zinc-500 mb-8">
+        <div className={`p-0 md:p-2 text-zinc-100 ${OrderHistory && OrderHistory.length <=4 ? 'h-[70vh]' : 'h-auto'}`}>
+          <h1 className="text-3xl text-center md:text-5xl font-semibold text-zinc-500 mb-8">
             Your Order History
           </h1>
           <div className="mt-4 bg-zinc-800 w-full rounded py-2 px-4 flex gap-2">
             <div className="w-[3%]">
               <h1 className="text-center">Sr.</h1>
             </div>
-            <div className="w-[22%]">
+            <div className="w-[22%] ml-2">
               <h1 className="">Books</h1>
             </div>
             <div className="w-[45%]">
@@ -67,7 +67,7 @@ const UserOrderHistory = () => {
             </div>
           </div>
           {OrderHistory.map((items, i) => (
-            <div className="bg-zinc-800 w-full rounded py-2 px-4 flex gap-4 hover:bg-zinc-900 hover:cursor-pointer">
+            <div className="bg-zinc-800 w-full rounded py-2 px-4 my-4 flex gap-4 hover:bg-zinc-900 hover:cursor-pointer">
               <div className="w-[3%]">
                 <h1 className="text-center">{i + 1}</h1>
               </div>
@@ -87,7 +87,7 @@ const UserOrderHistory = () => {
               </div>
               <div className="w-[16%]">
                 <h1 className="font-semibold text-green-500">
-                  {items.status === "Order placed" ? (
+                  {items.status === "Out for delivery" ? (
                     <div className="text-yellow-500">{items.status}</div>
                   ) : items.status === "Cancelled" ? (
                     <div className="text-red-500"> {items.status} </div>

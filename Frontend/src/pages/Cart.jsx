@@ -51,6 +51,15 @@ function Cart() {
   }, [Cart]);
 
   const placeOrder = async () => {
+    const userConformed = window.confirm(
+      "Are you sure you want to place this order? Click Ok button to confirm or Click Cancel button to abort."
+    );
+
+    if (!userConformed) {
+      toast.error("Order placement cancelled.");
+      return;
+    }
+
     try {
       const response = await axios.post(
         "http://localhost:1000/api/order/place-order",
@@ -61,6 +70,7 @@ function Cart() {
       navigate("/profile/orderHistory");
     } catch (error) {
       console.log(error);
+      toast.error("Failed to place the order. Please try again.");
     }
   };
 
@@ -99,29 +109,29 @@ function Cart() {
                 <img
                   src={items.url}
                   alt="/"
-                  className="h-[20vh] md:h-[10vh] object-cover mr-2"
+                  className="h-[20vh] md:h-[10vh]  object-cover mx-6 lg:mx-12"
                 />
                 <div className="w-full md:w-auto">
-                  <h1 className="text-2xl text-zinc-100 fnt-semibold text-start mt-2 md:mt-0">
+                  <h1 className="text-2xl ml-4 text-zinc-100 font-semibold text-center md:text-start mt-2 md:mt-0">
                     {items.title}
                   </h1>
-                  <p className="text-zinc-300 mt-2 hidden lg:block">
-                    {items.desc.slice(0, 100)}...
+                  <p className="text-zinc-300 mt-2 ml-4 mr-20 hidden lg:block">
+                    {items.desc.slice(0, 150)}...
                   </p>
-                  <p className="text-zinc-300 mt-2 hidden md:block lg:hidden">
-                    {items.desc.slice(0, 65)}...
+                  <p className="text-zinc-300 mt-2 hidden mx-4 md:block lg:hidden">
+                    {items.desc.slice(0, 100)}...
                   </p>
                   <p className="text-zinc-300 mt-2 md:hidden block">
                     {items.desc.slice(0, 100)}...
                   </p>
                 </div>
                 <div className="flex mt-4 w-full md:w-auto items-center justify-between">
-                  <h2 className="text-zinc-200 text-3xl font-semibold flex">
+                  <h2 className="text-zinc-200 text-2xl font-semibold flex">
                     ₹ {items.price}
                   </h2>
                   <button
                     onClick={() => deleteItems(items._id)}
-                    className="bg-red-100 text-red-700 border border-red-700 rounded p-2 ms-12 hover:scale-105 duration-200"
+                    className="bg-red-100 text-red-700 border border-red-700 rounded mr-4 p-2 ms-12 hover:scale-105 duration-200"
                   >
                     <AiFillDelete />
                   </button>

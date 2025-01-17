@@ -10,7 +10,7 @@ const Sidebar = ({ data }) => {
 
   return (
     <div className="bg-zinc-800 p-4 rounded flex flex-row md:flex-col items-center justify-between h-[100%]">
-      <div className="w-3/6 md:w-full ">
+      <div className="sm:w-3/6 md:w-full ">
       <div className="flex flex-col items-center justify-center">
         <img src={data.avatar} alt="profile_image" className="h-[12vh]" />
         <p className="mt-3 text-xl text-zinc-100 font-semibold ">
@@ -37,7 +37,7 @@ const Sidebar = ({ data }) => {
       </div>
 
       {role === "user" && (
-        <div className="w-3/6 md:w-full mt-2 md:mt-0 items-center justify-center flex flex-col">
+        <div className=" sm:w-3/6 md:w-full mt-2 md:mt-0 items-center justify-center flex flex-col">
           <Link
             to="/profile"
             className="text-zinc-100 font-semibold px-4 w-full my-2 py-2 text-center hover:bg-zinc-900 rounded transition-all duration-300"
