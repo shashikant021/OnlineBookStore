@@ -50,7 +50,7 @@ router.get("/get-favourite-books", authenticateToken, async (req, res) => {
       data: favouriteBooks,
     });
   } catch (error) {
-    res.status(500).json({ message: "An error occurred" });
+    res.status(500).json({ message: "An error occurred." });
   }
 });
 

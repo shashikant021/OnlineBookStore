@@ -77,24 +77,35 @@ const ViewBookDetails = () => {
             />
             {isLoggedIn === true && role === "user" && (
               <div className="flex flex-col pl-8 md:pl-0">
-                <button
-                  onClick={handleFavourite}
-                  className="bg-white rounded-2xl text-3xl p-2 mb-8 text-red-500 hover:text-red-900 hover:scale-105 duration-200"
-                >
-                  <FaHeart />
-                </button>
-                <button
-                  onClick={handleCart}
-                  className="bg-blue-500 rounded-2xl text-3xl p-2 mt-8 text-white hover:bg-blue-900 hover:scale-105 duration-200"
-                >
-                  <FaShoppingCart />
-                </button>
-                <button
-                  onClick={() => navigate("/all-books")}
-                  className="bg-white text-blue-500 text-4xl  rounded-2xl p-1 mt-16 hover:bg-blue-500 hover:text-white hover:scale-105 duration-200"
-                >
-                  <IoArrowBackCircleSharp />
-                </button>
+                <div>
+                  <button
+                    onClick={handleFavourite}
+                    className="bg-white rounded-2xl text-3xl p-2 text-red-500 hover:text-red-900 hover:scale-105 duration-200"
+                  >
+                    <FaHeart />
+                  </button>
+                  <h4 className=" text-white text-center">Fav</h4>
+                </div>
+                <div>
+                  {" "}
+                  <button
+                    onClick={handleCart}
+                    className="bg-blue-500 rounded-2xl text-3xl p-2 mt-12 text-white hover:bg-blue-900 hover:scale-105 duration-200"
+                  >
+                    <FaShoppingCart />
+                  </button>
+                  <h4 className=" text-white text-center">Cart</h4>
+                </div>
+                <div>
+                  {" "}
+                  <button
+                    onClick={() => navigate("/all-books")}
+                    className="bg-white text-blue-500 text-4xl rounded-2xl p-1 mt-12 hover:bg-blue-500 hover:text-white hover:scale-105 duration-200"
+                  >
+                    <IoArrowBackCircleSharp />
+                  </button>
+                  <h4 className=" text-white text-center">Back</h4>
+                </div>
               </div>
             )}
             {isLoggedIn === true && role === "admin" && (

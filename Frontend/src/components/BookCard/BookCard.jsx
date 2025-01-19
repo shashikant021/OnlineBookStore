@@ -39,7 +39,7 @@ const BookCard = ({ data, favourite }) => {
             <p className="mt-2 text-zinc-400 font-semibold text">
               By: {data.author}
             </p>
-            <p className="mt-2 text-zinc-200 font-semibold ">${data.price}</p>
+            <p className="mt-2 text-zinc-200 font-semibold ">₹{data.price}</p>
           </div>
         </Link>
         {favourite && (
