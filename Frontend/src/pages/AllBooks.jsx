@@ -19,11 +19,6 @@ const AllBooks = () => {
   }, []);
   return (
     <>
-      {!Data && (
-        <div className="bg-zinc-900 w-full h-screen flex items-center justify-center">
-          <Loader />
-        </div>
-      )}
       {Data && Data.length === 0 ? (
         <div className="bg-zinc-900 h-[85vh] p-4 text-zinc-100">
           <div className="h-[100%] flex flex-col items-center justify-center">
@@ -47,6 +42,11 @@ const AllBooks = () => {
                 </div>
               ))}
           </div>
+        </div>
+      )}
+      {!Data && (
+        <div className="bg-zinc-900 w-full h-[70vh] flex items-center justify-center">
+          <Loader />
         </div>
       )}
     </>
